@@ -7,7 +7,7 @@ function Todo(title, desc, dueDate, priority, notes, completionState) {
   this.completionState = completionState;
 }
 
-Todo.prototype.edit = function (title, desc, dueDate, priority, notes, completionState) {
+Todo.prototype.edit = function edit(title, desc, dueDate, priority, notes, completionState) {
   this.title = title;
   this.desc = desc;
   this.dueDate = dueDate;
@@ -16,13 +16,13 @@ Todo.prototype.edit = function (title, desc, dueDate, priority, notes, completio
   this.completionState = completionState;
 };
 
-Todo.prototype.changePriority = function (priority) {
+Todo.prototype.changePriority = function changePriority(priority) {
   if (priority === 'high' || priority === 'medium' || priority === 'low') {
     this.priority = priority;
   }
 };
 
-Todo.prototype.changeState = function (completionState) {
+Todo.prototype.changeState = function changeState(completionState) {
   if (completionState === 'pending' || completionState === 'progress' || completionState === 'complete') {
     this.completionState = completionState;
   }
