@@ -24,4 +24,41 @@ describe('Todo Object', () => {
   it('should have a Completion State', () => {
     expect(testData.todo.completionState).toBe('pending');
   });
+
+  it('should update Todo after edit', () => {
+    testData.todo.edit(
+      'Mow lawn Edited',
+      'Clear the surrounding grasses edited',
+      '23/03/2020',
+      'low',
+      'Leave immediately after school Edited',
+      'complete',
+    );
+    expect(testData.todo.title).toBe('Mow lawn Edited');
+    expect(testData.todo.desc).toBe('Clear the surrounding grasses edited');
+    expect(testData.todo.dueDate).toBe('23/03/2020');
+    expect(testData.todo.priority).toBe('low');
+    expect(testData.todo.notes).toBe('Leave immediately after school Edited');
+    expect(testData.todo.completionState).toBe('complete');
+  });
+
+  it('should change todo priority', () => {
+    testData.todo.changePriority('medium');
+    expect(testData.todo.priority).toBe('medium');
+  });
+
+  it('should not change todo priority unless value is low, high, medium', () => {
+    testData.todo.changePriority('urgent');
+    expect(testData.todo.priority).not.toBe('urgent');
+  });
+
+  it('should change todo completion state', () => {
+    testData.todo.changeState('pending');
+    expect(testData.todo.completionState).toBe('pending');
+  });
+
+  it('should not change todo state unless value is pending, progress, complete', () => {
+    testData.todo.changeState('ongoing');
+    expect(testData.todo.completionState).not.toBe('ongoing');
+  });
 });
