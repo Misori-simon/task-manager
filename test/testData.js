@@ -1,4 +1,5 @@
 import Todo from '../src/todo';
+import Project from '../src/project';
 
 const testData = {
   todo: new Todo(
@@ -9,6 +10,8 @@ const testData = {
     'Test using jest',
     'pending',
   ),
+
+  project: new Project('Testing'),
 };
 
 export default testData;
