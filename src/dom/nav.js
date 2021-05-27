@@ -24,11 +24,11 @@ function projectNav(todosCount) {
   return nav;
 }
 
-function makeNav(objectCount, type) {
-  if (type === 1) {
+function displayNav(objectCount, type) {
+  if (type === 'm' || type === 'm') {
     return mainNav(objectCount);
   }
   return projectNav(objectCount);
 }
 
-export default makeNav;
+export default displayNav;

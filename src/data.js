@@ -51,4 +51,5 @@ projects[2].addTodo(todos[2]);
 projects[2].addTodo(todos[3]);
 
 const data = { projects };
+
 export default data;

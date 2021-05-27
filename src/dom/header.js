@@ -1,4 +1,4 @@
-function makeHeader(siteTitle) {
+function displayHeader(siteTitle) {
   const header = document.createElement('header');
   header.setAttribute('class', 'header');
   const heading = document.createElement('h2');
@@ -8,4 +8,4 @@ function makeHeader(siteTitle) {
   return header;
 }
 
-export default makeHeader;
+export default displayHeader;

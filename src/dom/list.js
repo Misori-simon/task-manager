@@ -1,4 +1,4 @@
-function displayProjects(projectArr) {
+function ListProjects(projectArr) {
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
   for (let i = 0; i < projectArr.length; i += 1) {
@@ -22,7 +22,7 @@ function displayProjects(projectArr) {
   return objectWrap;
 }
 
-function displayTasks(taskArr) {
+function ListTasks(taskArr) {
   const taskWrap = document.createElement('div');
   taskWrap.setAttribute('class', 'task-wrap');
   for (let i = 0; i < taskArr.length; i += 1) {
@@ -68,7 +68,7 @@ function makeCardTitle(todoObj) {
 
   const objectTitle = document.createElement('h3');
   objectTitle.setAttribute('class', 'obj-title');
-  objectTitle.innerHTML = `${todoObj.title} (${todoObj.countComplete}/${todoObj.count})`;
+  objectTitle.innerHTML = `${todoObj.title} (${todoObj.countComplete()}/${todoObj.count()})`;
 
   titleLeft.appendChild(titleInfo);
   titleLeft.appendChild(objectTitle);
@@ -134,7 +134,7 @@ function makeCardBody(todoObj) {
   notes.setAttribute('class', 'obj-notes');
   notes.innerHTML = `${todoObj.notes}`;
 
-  const tasks = displayTasks(todoObj.tasks);
+  const tasks = ListTasks(todoObj.tasks);
 
   cardBody.appendChild(dueDate);
   cardBody.appendChild(controls);
@@ -145,7 +145,7 @@ function makeCardBody(todoObj) {
   return cardBody;
 }
 
-function displayTodos(todoArr) {
+function ListTodos(todoArr) {
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
   for (let i = 0; i < todoArr.length; i += 1) {
@@ -165,9 +165,9 @@ function displayTodos(todoArr) {
 
 function displayList(objArr, objType) {
   if (objType === 'p' || objType === 'P') {
-    return displayProjects(objArr);
+    return ListProjects(objArr);
   }
-  return displayTodos(objArr);
+  return ListTodos(objArr);
 }
 
 export default displayList;
