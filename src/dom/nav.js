@@ -1,7 +1,7 @@
 function mainNav(projectsCount) {
   const nav = document.createElement('nav');
   nav.setAttribute('class', 'header');
-  const navItems = [`Projects${projectsCount}`, 'new project'];
+  const navItems = [`Projects (${projectsCount})`, 'new project'];
   for (let i = 0; i < 2; i += 1) {
     const heading = document.createElement('h2');
     heading.setAttribute('class', 'nav-item');
@@ -14,7 +14,7 @@ function mainNav(projectsCount) {
 function projectNav(todosCount) {
   const nav = document.createElement('nav');
   nav.setAttribute('class', 'header');
-  const navItems = ['bacKIcon', `Projects${todosCount}`, 'plusIcon'];
+  const navItems = ['backIcon', `Projects (${todosCount})`, 'plusIcon'];
   for (let i = 0; i < navItems.length; i += 1) {
     const heading = document.createElement('h2');
     heading.setAttribute('class', 'nav-item');
@@ -24,10 +24,11 @@ function projectNav(todosCount) {
   return nav;
 }
 
-function makeNav(type, objectCount) {
+function makeNav(objectCount, type) {
   if (type === 1) {
     return mainNav(objectCount);
   }
   return projectNav(objectCount);
 }
+
 export default makeNav;
