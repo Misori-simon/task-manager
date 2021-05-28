@@ -11,10 +11,10 @@ function mainNav(projectsCount) {
   return nav;
 }
 
-function projectNav(todosCount) {
+function projectNav(projectTitle, todosCount) {
   const nav = document.createElement('nav');
   nav.setAttribute('class', 'header');
-  const navItems = ['backIcon', `Projects (${todosCount})`, 'plusIcon'];
+  const navItems = ['backIcon', `${projectTitle} (${todosCount})`, 'plusIcon'];
   for (let i = 0; i < navItems.length; i += 1) {
     const heading = document.createElement('h2');
     heading.setAttribute('class', 'nav-item');
@@ -24,11 +24,9 @@ function projectNav(todosCount) {
   return nav;
 }
 
-function displayNav(objectCount, type) {
-  if (type === 'm' || type === 'm') {
-    return mainNav(objectCount);
-  }
-  return projectNav(objectCount);
-}
+const nav = {
+  main: mainNav,
+  project: projectNav,
+};
 
-export default displayNav;
+export default nav;

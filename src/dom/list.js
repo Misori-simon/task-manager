@@ -1,6 +1,11 @@
+import nav from './nav';
+
 function ListProjects(projectArr) {
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
+
+  objectWrap.appendChild(nav.main(projectArr.length));
+
   for (let i = 0; i < projectArr.length; i += 1) {
     const objectItem = document.createElement('div');
     objectItem.setAttribute('class', 'obj-item');
@@ -145,9 +150,13 @@ function makeCardBody(todoObj) {
   return cardBody;
 }
 
-function ListTodos(todoArr) {
+function ListTodos(projectObj) {
+  const todoArr = projectObj.todos;
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
+
+  objectWrap.appendChild(nav.project(projectObj.title, todoArr.length));
+
   for (let i = 0; i < todoArr.length; i += 1) {
     const objectCard = document.createElement('div');
     objectCard.setAttribute('class', 'obj-card');
