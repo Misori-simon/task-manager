@@ -10,3 +10,4 @@ main.appendChild(displayNav(3, 'p'));
 main.appendChild(displayList(data.projects[2].todos));
 main.appendChild(forms.project);
 main.appendChild(forms.todo);
+main.appendChild(forms.task);

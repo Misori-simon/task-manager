@@ -106,9 +106,30 @@ function todoForm() {
   return form;
 }
 
+function taskForm() {
+  const form = document.createElement('form');
+  form.setAttribute('class', 'task-form');
+
+  const nameField = document.createElement('input');
+  nameField.setAttribute('type', 'text');
+  nameField.setAttribute('class', 'text-field');
+  nameField.setAttribute('placeholder', 'Task name');
+
+  const submitBtn = document.createElement('button');
+  submitBtn.setAttribute('type', 'button');
+  submitBtn.setAttribute('class', 'add-btn');
+  submitBtn.innerHTML = 'ADD';
+
+  form.appendChild(nameField);
+  form.appendChild(submitBtn);
+
+  return form;
+}
+
 const forms = {
   project: projectForm(),
   todo: todoForm(),
+  task: taskForm(),
 };
 
 export default forms;
