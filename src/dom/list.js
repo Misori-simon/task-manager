@@ -1,4 +1,5 @@
 import nav from './nav';
+import forms from './forms';
 
 function listProjects(projectArr) {
   const objectWrap = document.createElement('div');
@@ -145,6 +146,7 @@ function makeCardBody(todoObj) {
   cardBody.appendChild(controls);
   cardBody.appendChild(desc);
   cardBody.appendChild(notes);
+  cardBody.appendChild(forms.task);
   cardBody.appendChild(tasks);
 
   return cardBody;

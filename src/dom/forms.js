@@ -1,6 +1,7 @@
 function projectForm() {
   const form = document.createElement('form');
   form.setAttribute('class', 'project-form');
+  form.id = 'project-form';
 
   const titleField = document.createElement('input');
   titleField.setAttribute('type', 'text');
@@ -15,12 +16,13 @@ function projectForm() {
   form.appendChild(titleField);
   form.appendChild(submitBtn);
 
-  return form;
+  return { node: form, id: form.id };
 }
 
 function todoForm() {
   const form = document.createElement('form');
   form.setAttribute('class', 'todo-form');
+  form.id = 'todo-form';
 
   const titleField = document.createElement('input');
   titleField.setAttribute('type', 'text');
@@ -103,7 +105,7 @@ function todoForm() {
   form.appendChild(notesField);
   form.appendChild(submitBtn);
 
-  return form;
+  return { node: form, id: form.id };
 }
 
 function taskForm() {
