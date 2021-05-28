@@ -1,3 +1,7 @@
+// import Project from '../project';
+// import Todo from '../todo';
+import utils from './utils';
+
 function projectForm() {
   const form = document.createElement('form');
   form.setAttribute('class', 'project-form');
@@ -7,16 +11,30 @@ function projectForm() {
   titleField.setAttribute('type', 'text');
   titleField.setAttribute('class', 'text-field');
   titleField.setAttribute('placeholder', 'Project Title');
+  titleField.setAttribute('required', 'required');
 
   const submitBtn = document.createElement('button');
   submitBtn.setAttribute('type', 'button');
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
+  submitBtn.addEventListener('click', () => {
+    if (utils.myValidate.text(titleField)) {
+      // console.log(new Project(titleField.value));
+    } else {
+      // error message;
+    }
+  });
 
   form.appendChild(titleField);
   form.appendChild(submitBtn);
 
   return { node: form, id: form.id };
+}
+
+function assignPriority(high, medium) {
+  if (high.checked) { return 'high'; }
+  if (medium.checked) { return 'medium'; }
+  return 'low';
 }
 
 function todoForm() {
@@ -97,6 +115,23 @@ function todoForm() {
   submitBtn.setAttribute('type', 'button');
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
+  submitBtn.addEventListener('click', () => {
+    if (utils.myValidate.text(titleField)
+        && utils.myValidate.text(descField)
+        && utils.myValidate.date(dateField)
+        && utils.myValidate.radio([highField, mediumField, lowField])
+    ) {
+      // console.log(new Todo(
+      //   titleField.value,
+      //   descField.value,
+      //   dateField.value,
+      //   assignPriority(highField, mediumField),
+      //   notesField.value,
+      // ));
+    } else {
+      // console.log('error');
+    }
+  });
 
   form.appendChild(titleField);
   form.appendChild(descField);
@@ -121,6 +156,13 @@ function taskForm() {
   submitBtn.setAttribute('type', 'button');
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
+  submitBtn.addEventListener('click', () => {
+    if (utils.myValidate.text(nameField)) {
+      // console.log(new Todo(nameField));
+    } else {
+      // display errors
+    }
+  });
 
   form.appendChild(nameField);
   form.appendChild(submitBtn);

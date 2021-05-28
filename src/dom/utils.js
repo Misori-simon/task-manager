@@ -7,15 +7,47 @@ function toggle() {
     state = !state;
     if (state) {
       parentNode.appendChild(form.node);
-      buttonNode.innerHTML = defaultText;
+      buttonNode.innerHTML = openText;
     } else {
       parentNode.removeChild(document.getElementById(form.id));
-      buttonNode.innerHTML = openText;
+      buttonNode.innerHTML = defaultText;
     }
   };
 }
-
+// the use of clusore is important
 const toggleForm = toggle();
 
-const utils = { parent, toggleForm };
+function validateTextInput(inputField) {
+  if (inputField.value.trim().length >= 3) {
+    return true;
+  }
+  return false;
+}
+
+function validateRadioInput(inputFieldArr) {
+  for (let i = 0; i < inputFieldArr.length; i += 1) {
+    if (inputFieldArr[i].checked) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function validateDateInput(inputField) {
+  const dateNow = new Date(Date());
+  const now = new Date(`${dateNow.getFullYear()}-${dateNow.getMonth() + 1}-${dateNow.getDate()}`);
+  const dueDate = new Date(inputField.value);
+  if ((inputField.value === '')) {
+    return false;
+  }
+  return now <= dueDate;
+}
+
+const myValidate = {
+  text: validateTextInput,
+  radio: validateRadioInput,
+  date: validateDateInput,
+};
+
+const utils = { parent, toggleForm, myValidate };
 export default utils;
