@@ -1,6 +1,6 @@
 import nav from './nav';
 
-function ListProjects(projectArr) {
+function listProjects(projectArr) {
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
 
@@ -150,7 +150,7 @@ function makeCardBody(todoObj) {
   return cardBody;
 }
 
-function ListTodos(projectObj) {
+function listTodos(projectObj) {
   const todoArr = projectObj.todos;
   const objectWrap = document.createElement('div');
   objectWrap.setAttribute('class', 'obj-wrap');
@@ -172,11 +172,9 @@ function ListTodos(projectObj) {
   return objectWrap;
 }
 
-function displayList(objArr, objType) {
-  if (objType === 'p' || objType === 'P') {
-    return ListProjects(objArr);
-  }
-  return ListTodos(objArr);
-}
+const list = {
+  projects: listProjects,
+  todos: listTodos,
+};
 
-export default displayList;
+export default list;
