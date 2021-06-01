@@ -1,5 +1,6 @@
-// import Project from '../project';
-// import Todo from '../todo';
+import Project from '../project';
+import Todo from '../todo';
+import Task from '../task';
 import utils from './utils';
 
 function projectForm() {
@@ -7,25 +8,30 @@ function projectForm() {
   form.setAttribute('class', 'project-form');
   form.id = 'project-form';
 
+  const titleFieldWrap = document.createElement('div');
+  titleFieldWrap.setAttribute('class', 'text-field');
+
   const titleField = document.createElement('input');
   titleField.setAttribute('type', 'text');
   titleField.setAttribute('class', 'text-field');
   titleField.setAttribute('placeholder', 'Project Title');
   titleField.setAttribute('required', 'required');
 
+  titleFieldWrap.appendChild(titleField);
+
   const submitBtn = document.createElement('button');
   submitBtn.setAttribute('type', 'button');
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
   submitBtn.addEventListener('click', () => {
-    if (utils.myValidate.text(titleField)) {
-      // console.log(new Project(titleField.value));
-    } else {
-      // error message;
+    utils.removeErrors(form);
+    if (utils.myValidate.text(titleField, titleFieldWrap)) {
+      console.log(new Project(titleField.value));
+      utils.clearValue([titleField]);
     }
   });
 
-  form.appendChild(titleField);
+  form.appendChild(titleFieldWrap);
   form.appendChild(submitBtn);
 
   return { node: form, id: form.id };
@@ -42,20 +48,35 @@ function todoForm() {
   form.setAttribute('class', 'todo-form');
   form.id = 'todo-form';
 
+  const titleFieldWrap = document.createElement('div');
+  titleFieldWrap.setAttribute('class', 'text-field');
+
   const titleField = document.createElement('input');
   titleField.setAttribute('type', 'text');
   titleField.setAttribute('class', 'text-field');
   titleField.setAttribute('placeholder', 'Todo Title');
+
+  titleFieldWrap.appendChild(titleField);
+
+  const descFieldWrap = document.createElement('div');
+  descFieldWrap.setAttribute('class', 'text-field');
 
   const descField = document.createElement('input');
   descField.setAttribute('type', 'text');
   descField.setAttribute('class', 'text-field');
   descField.setAttribute('placeholder', 'Todo Description');
 
+  descFieldWrap.appendChild(descField);
+
+  const dateFieldWrap = document.createElement('div');
+  dateFieldWrap.setAttribute('class', 'text-field');
+
   const dateField = document.createElement('input');
   dateField.setAttribute('type', 'date');
   dateField.setAttribute('class', 'text-field');
   dateField.setAttribute('placeholder', 'Todo Description');
+
+  dateFieldWrap.appendChild(dateField);
 
   const priority = document.createElement('div');
   priority.setAttribute('class', 'priority-wrap');
@@ -116,26 +137,31 @@ function todoForm() {
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
   submitBtn.addEventListener('click', () => {
-    if (utils.myValidate.text(titleField)
-        && utils.myValidate.text(descField)
-        && utils.myValidate.date(dateField)
-        && utils.myValidate.radio([highField, mediumField, lowField])
+    utils.removeErrors(form);
+    if (utils.myValidate.text(titleField, titleFieldWrap)
+        && utils.myValidate.text(descField, descFieldWrap)
+        && utils.myValidate.date(dateField, dateFieldWrap)
+        && utils.myValidate.radio([highField, mediumField, lowField], priority)
     ) {
-      // console.log(new Todo(
-      //   titleField.value,
-      //   descField.value,
-      //   dateField.value,
-      //   assignPriority(highField, mediumField),
-      //   notesField.value,
-      // ));
-    } else {
-      // console.log('error');
+      console.log(new Todo(
+        titleField.value,
+        descField.value,
+        dateField.value,
+        assignPriority(highField, mediumField),
+        notesField.value,
+      ));
+
+      utils.clearValue([titleField]);
+      utils.clearValue([descField]);
+      utils.clearValue([dateField]);
+      utils.clearRadio([highField, mediumField, lowField]);
+      utils.clearValue([notesField]);
     }
   });
 
-  form.appendChild(titleField);
-  form.appendChild(descField);
-  form.appendChild(dateField);
+  form.appendChild(titleFieldWrap);
+  form.appendChild(descFieldWrap);
+  form.appendChild(dateFieldWrap);
   form.appendChild(priority);
   form.appendChild(notesField);
   form.appendChild(submitBtn);
@@ -147,24 +173,29 @@ function taskForm() {
   const form = document.createElement('form');
   form.setAttribute('class', 'task-form');
 
+  const nameFieldWrap = document.createElement('div');
+  nameFieldWrap.setAttribute('class', 'text-field');
+
   const nameField = document.createElement('input');
   nameField.setAttribute('type', 'text');
   nameField.setAttribute('class', 'text-field');
   nameField.setAttribute('placeholder', 'Task name');
+
+  nameFieldWrap.appendChild(nameField);
 
   const submitBtn = document.createElement('button');
   submitBtn.setAttribute('type', 'button');
   submitBtn.setAttribute('class', 'add-btn');
   submitBtn.innerHTML = 'ADD';
   submitBtn.addEventListener('click', () => {
-    if (utils.myValidate.text(nameField)) {
-      // console.log(new Todo(nameField));
-    } else {
-      // display errors
+    utils.removeErrors(form);
+    if (utils.myValidate.text(nameField, nameFieldWrap)) {
+      console.log(new Task(nameField));
+      utils.clearValue([nameField]);
     }
   });
 
-  form.appendChild(nameField);
+  form.appendChild(nameFieldWrap);
   form.appendChild(submitBtn);
 
   return form;
