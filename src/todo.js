@@ -1,19 +1,20 @@
-function Todo(title, desc, dueDate, priority, notes, completionState) {
+function Todo(title, desc, dueDate, priority, notes) {
   this.title = title;
   this.desc = desc;
   this.dueDate = dueDate;
   this.priority = priority;
   this.notes = notes;
-  this.completionState = completionState;
+  this.completed = false;
+  this.tasks = [];
+  this.tasksCompleted = 0;
 }
 
-Todo.prototype.edit = function edit(title, desc, dueDate, priority, notes, completionState) {
+Todo.prototype.edit = function edit(title, desc, dueDate, priority, notes) {
   this.title = title;
   this.desc = desc;
   this.dueDate = dueDate;
   this.priority = priority;
   this.notes = notes;
-  this.completionState = completionState;
 };
 
 Todo.prototype.changePriority = function changePriority(priority) {
@@ -22,10 +23,21 @@ Todo.prototype.changePriority = function changePriority(priority) {
   }
 };
 
-Todo.prototype.changeState = function changeState(completionState) {
-  if (completionState === 'pending' || completionState === 'progress' || completionState === 'complete') {
-    this.completionState = completionState;
-  }
+Todo.prototype.complete = function complete() {
+  this.completed = true;
+};
+
+Todo.prototype.addTask = function addTask(taskObj) {
+  this.tasks.push(taskObj);
+  return this.tasks.length;
+};
+
+Todo.prototype.count = function count() {
+  return this.tasks.length;
+};
+
+Todo.prototype.countComplete = function countComplete() {
+  return this.tasksCompleted;
 };
 
 export default Todo;
